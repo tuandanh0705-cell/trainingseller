@@ -767,7 +767,7 @@ body:not([data-draft]) .tbd,body:not([data-draft]) .draftbar{display:none}
   }
 
   /* Form */
-  var ENDPOINT=''; /* dán URL webhook (Google Apps Script, Make, n8n...) vào đây */
+  var ENDPOINT='https://script.google.com/macros/s/AKfycbwaf1vQVzwxtke9RllHn-ZgYlUh8ZRy-5-dZkjQOZfjtuZXrYkc6LsrDd0J7sDk6FTu/exec';
   var form=document.getElementById('regForm'),btn=document.getElementById('submitBtn'),errBox=document.getElementById('formErr'),done=document.getElementById('done'),busy=false;
   document.querySelectorAll('.fld').forEach(function(f,i){var e=f.querySelector('.err');if(!e)return;e.id='err'+i;e.setAttribute('role','alert');f.querySelectorAll('input,select').forEach(function(x){x.setAttribute('aria-describedby',e.id)})});
   function setBad(el,bad){var f=el.closest('.fld');if(f){f.classList.toggle('bad',bad);f.querySelectorAll('input,select').forEach(function(x){if(bad)x.setAttribute('aria-invalid','true');else x.removeAttribute('aria-invalid')})}}
