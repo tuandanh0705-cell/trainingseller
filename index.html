@@ -336,14 +336,14 @@ body:not([data-draft]) .tbd,body:not([data-draft]) .draftbar{display:none}
 .reg>div:first-child{position:sticky;top:110px}
 .fld{margin-bottom:1.25rem}
 .fld>label:not(.opt),.fld legend{display:block;font:700 .95rem/1.3 var(--ff-b);color:var(--navy);margin-bottom:.45rem;padding:0}
-.req{color:var(--navy)}
+.req{color:var(--err);font-weight:800}
 .hint{font-size:.88rem;color:var(--ink-2);margin-top:.3rem}
-.inp{width:100%;background:#F6F8FE;border:2px solid #C9D3EE;border-radius:14px;padding:.85rem 1rem;font-size:1.02rem;color:var(--ink);transition:border-color .2s,background .2s}
+.inp{width:100%;background:#F6F8FE;border:2px solid #C9D3EE;border-radius:14px;padding:.85rem 1rem;font-size:1.02rem;color:var(--ink);transition:border-color .2s,background .2s,box-shadow .2s}
 .inp::placeholder{color:#5D678C}
 .inp:hover{border-color:var(--navy)}
 .inp:focus{outline:none;border-color:var(--navy);background:#fff;box-shadow:0 0 0 4px var(--cyan)}
 .sel{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23080F2C' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;background-size:1.15rem;padding-right:2.6rem;cursor:pointer}
-.fld.bad .inp{border-color:var(--err)}
+.fld.bad .inp{border-color:var(--err);background:#FFF5F6;box-shadow:0 0 0 3px rgba(164,16,47,.16)}
 .err{display:none;margin-top:.35rem;font:600 .9rem/1.35 var(--ff-b);color:var(--err)}
 .fld.bad .err{display:block}
 .opts{display:grid;gap:.55rem}
@@ -664,17 +664,16 @@ body:not([data-draft]) .tbd,body:not([data-draft]) .draftbar{display:none}
     <div class="form-sheet stk"><div class="form-in">
       <form id="regForm" novalidate>
         <div class="hp" aria-hidden="true"><label>Bỏ trống<input type="text" name="hp_x7" tabindex="-1" autocomplete="off"></label></div>
-        <div class="fld"><label for="f-name">Họ và tên <span class="req">*</span></label><input class="inp" id="f-name" name="name" autocomplete="name" required placeholder="Nguyễn Văn A"><p class="err">Vui lòng nhập họ và tên.</p></div>
-        <div class="fld"><label for="f-phone">Số điện thoại (Zalo) <span class="req">*</span></label><input class="inp num" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="0912 345 678"><p class="hint">BTC liên hệ xác nhận qua số này.</p><p class="err">Số điện thoại chưa đúng. Nhập 10 số, ví dụ 0912 345 678.</p></div>
-        <div class="fld"><label for="f-biz">Tên doanh nghiệp / cửa hàng <span class="req">*</span></label><input class="inp" id="f-biz" name="business" autocomplete="organization" required placeholder="Tên đơn vị của bạn"><p class="err">Vui lòng nhập tên doanh nghiệp hoặc cửa hàng.</p></div>
-        <div class="fld"><label for="f-status">Gian hàng TikTok Shop của bạn <span class="req">*</span></label>
-          <select class="inp sel" id="f-status" name="status" required>
-            <option value="" selected disabled>Chọn tình trạng gian hàng</option>
+        <div class="fld"><label for="f-name">Họ và tên <span class="req" aria-hidden="true">*</span></label><input class="inp" id="f-name" name="fullName" autocomplete="name" required aria-required="true" placeholder="Nguyễn Văn A"><p class="err">Vui lòng điền Họ và tên (bắt buộc).</p></div>
+        <div class="fld"><label for="f-phone">Số điện thoại (Zalo) <span class="req" aria-hidden="true">*</span></label><input class="inp num" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-required="true" placeholder="0912 345 678"><p class="hint">BTC liên hệ xác nhận qua số này.</p><p class="err" id="err-phone">Vui lòng điền Số điện thoại (bắt buộc).</p></div>
+        <div class="fld"><label for="f-biz">Tên doanh nghiệp / cửa hàng <span class="req" aria-hidden="true">*</span></label><input class="inp" id="f-biz" name="business" autocomplete="organization" required aria-required="true" placeholder="Tên đơn vị của bạn"><p class="err">Vui lòng điền Tên doanh nghiệp / cửa hàng (bắt buộc).</p></div>
+        <div class="fld"><label for="f-status">Gian hàng TikTok Shop của bạn</label>
+          <select class="inp sel" id="f-status" name="status">
+            <option value="" selected>Chọn tình trạng gian hàng</option>
             <option value="chua-co">Chưa có gian hàng</option>
             <option value="dang-ban">Đã có gian hàng và đang bán</option>
             <option value="chua-nhan-voucher">Đã mở shop nhưng chưa biết cách nhận voucher</option>
-          </select>
-          <p class="err">Vui lòng chọn tình trạng gian hàng.</p></div>
+          </select></div>
         <div class="fld"><label for="f-cat">Ngành hàng kinh doanh</label><input class="inp" id="f-cat" name="category" placeholder="Ví dụ: thời trang, thực phẩm..."></div>
         <div class="fld"><label for="f-interest">Bạn quan tâm nhất đến</label>
           <select class="inp sel" id="f-interest" name="interest">
@@ -776,19 +775,27 @@ body:not([data-draft]) .tbd,body:not([data-draft]) .draftbar{display:none}
   /* Form */
   var ENDPOINT='https://script.google.com/macros/s/AKfycbwaf1vQVzwxtke9RllHn-ZgYlUh8ZRy-5-dZkjQOZfjtuZXrYkc6LsrDd0J7sDk6FTu/exec';
   var form=document.getElementById('regForm'),btn=document.getElementById('submitBtn'),errBox=document.getElementById('formErr'),done=document.getElementById('done'),busy=false;
-  document.querySelectorAll('.fld').forEach(function(f,i){var e=f.querySelector('.err');if(!e)return;e.id='err'+i;e.setAttribute('role','alert');f.querySelectorAll('input,select').forEach(function(x){x.setAttribute('aria-describedby',e.id)})});
+  var fName=document.getElementById('f-name'),fPhone=document.getElementById('f-phone'),fBiz=document.getElementById('f-biz'),fStatus=document.getElementById('f-status'),fCat=document.getElementById('f-cat'),fInterest=document.getElementById('f-interest'),errPhone=document.getElementById('err-phone');
+  document.querySelectorAll('.fld').forEach(function(f,i){var e=f.querySelector('.err');if(!e)return;if(!e.id)e.id='err'+i;e.setAttribute('role','alert');f.querySelectorAll('input,select').forEach(function(x){x.setAttribute('aria-describedby',e.id)})});
   function setBad(el,bad){var f=el.closest('.fld');if(f){f.classList.toggle('bad',bad);f.querySelectorAll('input,select').forEach(function(x){if(bad)x.setAttribute('aria-invalid','true');else x.removeAttribute('aria-invalid')})}}
   function validPhone(v){var s=v.replace(/[\s.\-()]/g,'');return /^(?:\+?84|0)(?:3|5|7|8|9)\d{8}$/.test(s)}
+  function checkPhone(){
+    var raw=fPhone.value.trim();
+    if(!raw){errPhone.textContent='Vui\u00a0lòng điền Số\u00a0điện\u00a0thoại (bắt\u00a0buộc).';return false}
+    if(!validPhone(raw)){errPhone.textContent='Số\u00a0điện\u00a0thoại chưa đúng. Nhập 10 số, ví\u00a0dụ 0912 345 678.';return false}
+    return true;
+  }
   function check(){
     var ok=true,first=null;
     function mark(el,bad){setBad(el,bad);if(bad){ok=false;if(!first)first=el}}
-    mark(form.name,!form.name.value.trim());
-    mark(form.phone,!validPhone(form.phone.value));
-    mark(form.business,!form.business.value.trim());
-    mark(form.status,!form.status.value);
-    if(first)first.focus();
+    mark(fName,!fName.value.trim());
+    mark(fPhone,!checkPhone());
+    mark(fBiz,!fBiz.value.trim());
+    if(first){first.scrollIntoView({behavior:'smooth',block:'center'});first.focus({preventScroll:true})}
     return ok;
   }
+  [fName,fBiz].forEach(function(el){el.addEventListener('blur',function(){setBad(el,!el.value.trim())})});
+  fPhone.addEventListener('blur',function(){setBad(fPhone,!checkPhone())});
   function clearBad(e){var f=e.target.closest('.fld');if(f&&f.classList.contains('bad'))setBad(e.target,false)}
   form.addEventListener('input',clearBad);
   form.addEventListener('change',clearBad);
@@ -799,9 +806,9 @@ body:not([data-draft]) .tbd,body:not([data-draft]) .draftbar{display:none}
     if(form.hp_x7.value)return; /* honeypot */
     if(!check())return;
     busy=true;btn.disabled=true;btn.textContent='Đang gửi...';
-    var data={name:form.name.value.trim(),phone:form.phone.value.replace(/[\s.\-()]/g,''),business:form.business.value.trim(),
-      status:form.status.value,category:form.category.value.trim(),
-      interest:form.interest.value?[form.interest.value]:[],
+    var data={name:fName.value.trim(),phone:fPhone.value.replace(/[\s.\-()]/g,''),business:fBiz.value.trim(),
+      status:fStatus.value,category:fCat.value.trim(),
+      interest:fInterest.value?[fInterest.value]:[],
       consent:true,submittedAt:new Date().toISOString()};
     function ok(){form.style.display='none';done.classList.add('show');done.focus()}
     function fail(){busy=false;btn.disabled=false;btn.textContent='HOÀN TẤT ĐĂNG KÝ MIỄN PHÍ';errBox.classList.add('show')}
